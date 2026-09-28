@@ -935,7 +935,9 @@ function init() {
                                 player.body.sendMessage("You do not have sufficient permission to promote this player!");
                             } else {
                                 o.hasOperator = false;
+                                o.socket.status.hasOperator = false;
                                 o.socket.talk("m", 8_000, "You are no longer an operator.");
+                                o.socket.talk("Op", false); // hides mobile sandbox keys
                                 player.body.sendMessage(
                                     "Operator access removed to " + `${o.name === "" ? "A unnamed Player" : o.name}` + "."
                                 );
@@ -945,6 +947,7 @@ function init() {
                         o.hasOperator = true;
                         o.socket.status.hasOperator = true;
                         o.socket.talk("m", 8_000, "You are now an operator.");
+                        o.socket.talk("Op", true); // lets client show the mobile sandbox keys
                         player.body.sendMessage("Operator access given to " + `${o.name === "" ? "A unnamed Player" : o.name}` + ".");
                     }
                 });
@@ -963,7 +966,9 @@ function init() {
                                 player.body.sendMessage("You do not have sufficient permission to demote this player!");
                             } else {
                                 o.hasOperator = false;
+                                o.socket.status.hasOperator = false;
                                 o.socket.talk("m", 8_000, "You are no longer an operator.");
+                                o.socket.talk("Op", false); // hiding keys mobile
                                 player.body.sendMessage(
                                     "Operator access removed to " + `${o.name === "" ? "A unnamed Player" : o.name}` + "."
                                 );
@@ -973,6 +978,7 @@ function init() {
                         o.hasOperator = true;
                         o.socket.status.hasOperator = true;
                         o.socket.talk("m", 8_000, "You are now an operator.");
+                        o.socket.talk("Op", true); // show keys (mobile)
                         player.body.sendMessage("Operator access given to " + `${o.name === "" ? "A unnamed Player" : o.name}` + ".");
                     }
                 });
